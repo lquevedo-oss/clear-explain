@@ -21,6 +21,17 @@ Date: 2026-10-02.
 
 ## Limits
 
+## Public publication checks
+
+- The repository at https://github.com/lquevedo-oss/clear-explain was fetched
+  without authentication and confirmed public. All 16 published files matched
+  the corresponding local Git blob contents at the time of verification.
+- The demo at https://lquevedo-oss.github.io/clear-explain/ was opened in a browser.
+  Its homepage redirected to the example successfully. Default results, a boundary
+  calculation, and reset passed with no JavaScript execution errors.
+
+## Evaluation limits
+
 These checks validate the skill's package structure and the included HTML example.
 They do not prove formal ASD-STE100 compliance or model behavior after installation.
 The prompts in [cases.md](cases.md) are ready for manual evaluation; no independent
