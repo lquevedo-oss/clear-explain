@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>¿Por qué crece una cola? · Clear Explain</title>
+<style>
+:root{--paper:#f2f6fa;--surface:#fff;--ink:#193040;--muted:#506477;--line:#ccd8e3;--blue:#235ecc;--pale:#e8f0ff;--green:#176b51}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 "Segoe UI",Arial,sans-serif}
+main{max-width:1160px;margin:auto;padding:32px 36px 50px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);padding-bottom:18px;font-size:15px}header strong{font-weight:700}header span{color:var(--muted)}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-1.5px;margin:36px 0 16px;max-width:800px}h2{font-size:21px;line-height:1.3;margin:0 0 18px}p{max-width:72ch;margin:0 0 16px}.intro{font-size:20px;max-width:740px;margin-bottom:30px}.workspace{display:grid;grid-template-columns:285px minmax(0,1fr);background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}.controls{padding:25px;border-right:1px solid var(--line);background:#f9fbfe}.field{margin-bottom:26px}.field label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:16px;font-weight:600}.field output{font-size:22px;color:var(--blue);font-weight:700;font-variant-numeric:tabular-nums}.hint{display:block;color:var(--muted);font-size:14px;margin:2px 0 8px}input[type=range]{width:100%;height:36px;accent-color:var(--blue);cursor:pointer;margin:0}button{font:600 15px/1.2 "Segoe UI",Arial,sans-serif;border:1px solid var(--line);border-radius:7px;padding:12px 16px;min-height:44px;background:var(--surface);color:var(--ink);cursor:pointer}button:hover:not(:disabled){background:var(--pale);border-color:var(--blue)}button:disabled{opacity:.5;cursor:default}button.primary{background:var(--blue);color:white;border-color:var(--blue)}button.primary:hover:not(:disabled){background:#194eaf}button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:4px}.reset{width:100%;margin-top:2px}.explore{padding:25px 28px}.chart-header{display:flex;justify-content:space-between;gap:15px;align-items:baseline}.chart-header span{color:var(--muted);font-size:14px}.chart{display:block;width:100%;height:auto;margin:0 0 8px}.chart text{font-family:"Segoe UI",Arial,sans-serif;fill:var(--muted);font-size:14px}.step-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.step-nav strong{font-size:19px;font-variant-numeric:tabular-nums}.nav-buttons{display:flex;gap:9px}.equation{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:24px 0 12px}.term{text-align:center;flex:1}.term b{display:block;font-size:32px;font-variant-numeric:tabular-nums;line-height:1.2}.term span{display:block;font-size:13px;color:var(--muted);margin-top:6px}.term.result{color:var(--blue);background:var(--pale);padding:10px 5px;border-radius:7px}.operator{font-size:22px;color:var(--muted)}.reading{margin:16px 0 0;min-height:3.1em;font-size:16px}.below{display:grid;grid-template-columns:1fr 1fr;gap:45px;margin-top:32px}.below h2{margin-bottom:12px}.below p{font-size:16px}.formula{display:block;background:#e6edf5;padding:15px 18px;border-radius:7px;white-space:normal;overflow-wrap:anywhere;font-size:14px;margin-bottom:15px}details{margin:18px 0}summary{cursor:pointer;font-weight:600;min-height:44px;padding:8px 0}table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}caption{text-align:left;color:var(--muted);font-size:14px;padding:10px 0}th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}tr.selected{background:var(--pale);font-weight:700}footer{border-top:1px solid var(--line);padding-top:18px;margin-top:28px;color:var(--muted);font-size:14px}noscript p{padding:18px;background:var(--pale)}[hidden]{display:none!important}
+@media(max-width:760px){main{padding:22px 20px 35px}.workspace{grid-template-columns:1fr}.controls{border-right:0;border-bottom:1px solid var(--line);padding:22px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{margin-bottom:12px}.field:last-child{grid-column:1/-1}.field:last-child input{max-width:100%}.explore{padding:22px 18px}.below{grid-template-columns:1fr;gap:8px}.chart-header{display:block}.chart-header h2{margin-bottom:5px}.step-nav{align-items:flex-start;flex-direction:column}.nav-buttons{width:100%}.nav-buttons button{flex:1}.term b{font-size:27px}.term span{font-size:12px}.equation{gap:5px}header{align-items:flex-start}header span{max-width:160px;text-align:right}h1{letter-spacing:-.8px}}
+@media(max-width:380px){.fields{grid-template-columns:1fr}.field:last-child{grid-column:auto}.term b{font-size:24px}.operator{font-size:18px}main{padding-inline:15px}}
+@media print{body{background:white}main{padding:0}.controls,.nav-buttons,.reset{display:none}.workspace{grid-template-columns:1fr}.below{grid-template-columns:1fr}details>*{display:block}footer{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+<header><strong>Clear Explain</strong><span>Un tema. Una explicación que puedes probar.</span></header>
+<h1>¿Por qué crece una cola de trabajo?</h1>
+<p class="intro">Si llegan más tareas de las que puedes completar, quedan tareas pendientes. Cambia los valores y observa qué ocurre en cada paso.</p>
+<noscript><p>Esta simulación necesita JavaScript. Con 5 tareas nuevas y capacidad para 3 por paso, una cola vacía crece así: 2, 4, 6 tareas pendientes. Si la capacidad iguala las llegadas, una cola existente se mantiene.</p></noscript>
+<section class="workspace" aria-label="Simulador de una cola de trabajo">
+<div class="controls">
+<h2>Prueba un escenario</h2>
+<div class="fields">
+<div class="field"><label for="arrivals">Tareas que llegan <output id="arrivals-value" for="arrivals">5</output></label><span class="hint">En cada paso</span><input id="arrivals" type="range" min="0" max="12" value="5" aria-describedby="model-note"></div>
+<div class="field"><label for="capacity">Capacidad <output id="capacity-value" for="capacity">3</output></label><span class="hint">Tareas que puedes completar por paso</span><input id="capacity" type="range" min="0" max="12" value="3" aria-describedby="model-note"></div>
+<div class="field"><label for="initial">Cola inicial <output id="initial-value" for="initial">0</output></label><span class="hint">Tareas pendientes antes de empezar</span><input id="initial" type="range" min="0" max="20" value="0" aria-describedby="model-note"></div>
+</div>
+<button class="reset" id="reset" type="button">Restablecer ejemplo</button>
+<p class="hint" style="margin-top:14px">Al cambiar un valor, se recalculan los diez pasos del escenario.</p>
+</div>
+<div class="explore">
+<div class="chart-header"><h2>Así cambia la cola</h2><span>Tareas pendientes al terminar cada paso</span></div>
+<svg class="chart" id="chart" viewBox="0 0 680 265" role="img" aria-labelledby="chart-title chart-description">
+<title id="chart-title">Evolución de las tareas pendientes</title><desc id="chart-description">La tabla inferior ofrece los mismos resultados.</desc>
+<g id="grid"></g><path id="projection" fill="none" stroke="#899aaf" stroke-width="2" stroke-dasharray="5 5"></path><path id="history" fill="none" stroke="#235ecc" stroke-width="3"></path><g id="markers"></g>
+<circle id="current-point" r="7" fill="#235ecc" stroke="white" stroke-width="3"></circle>
+<text id="axis-step" x="665" y="255" text-anchor="end">Paso</text>
+</svg>
+<div class="step-nav"><strong id="step-label">Paso 1 de 10</strong><div class="nav-buttons"><button id="previous" type="button">Paso anterior</button><button id="next" class="primary" type="button">Siguiente paso</button></div></div>
+<div id="result-region" aria-live="polite" aria-atomic="true">
+<div class="equation" id="equation" aria-label="Cálculo del paso seleccionado">
+<div class="term"><b id="before">0</b><span>Pendientes antes</span></div><span class="operator" aria-hidden="true">+</span>
+<div class="term"><b id="added">5</b><span>Llegan</span></div><span class="operator" aria-hidden="true">−</span>
+<div class="term"><b id="done">3</b><span>Se completan</span></div><span class="operator" aria-hidden="true">=</span>
+<div class="term result"><b id="after">2</b><span>Quedan pendientes</span></div>
+</div>
+<p class="reading" id="reading">Llegan 5 tareas y completas 3. Quedan 2 tareas pendientes.</p>
+</div>
+</div>
+</section>
+<section class="below" aria-label="Cómo interpretar el modelo">
+<div><h2>La regla es simple</h2><code class="formula">cola siguiente = máximo(0, cola actual + llegadas − capacidad)</code>
+<p>Primero llegan las tareas. Después, completas las que permite tu capacidad. La cola nunca es negativa: si hay menos trabajo, completas solo el disponible.</p>
+<p id="model-note">Modelo ilustrativo: las llegadas y la capacidad son constantes. Todas las tareas requieren el mismo esfuerzo. No se descartan tareas ni se cambia su prioridad.</p></div>
+<div><h2 id="takeaway-title">La cola crece</h2><p id="takeaway">Llegan 2 tareas más de las que puedes completar en cada paso.</p>
+<p>Prueba igualar la capacidad a las llegadas con una cola inicial mayor que cero. La cola se mantiene: para reducirla necesitas capacidad adicional.</p>
+<details id="data-details"><summary>Ver los resultados de cada paso</summary><table><caption>Resultados calculados con los valores seleccionados. El paso actual aparece resaltado.</caption><thead><tr><th scope="col">Paso</th><th scope="col">Se completan</th><th scope="col">Pendientes</th></tr></thead><tbody id="data"></tbody></table></details></div>
+</section>
+<footer>Ejemplo educativo de Clear Explain. Los números ilustran un modelo; no describen una operación real.</footer>
+</main>
+<script>
+'use strict';
+const ids = ['arrivals', 'capacity', 'initial'];
+const get = id => document.getElementById(id);
+const NS = 'http://www.w3.org/2000/svg';
+let step = 1;
+function makeSvg(tag, attrs, text) {
+  const node = document.createElementNS(NS, tag);
+  for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+function render() {
+  const [arrivals, capacity, initial] = ids.map(id => Number(get(id).value));
+  ids.forEach(id => { get(id + '-value').textContent = get(id).value; });
+  const queue = [initial];
+  const completed = [0];
+  for (let i = 1; i <= 10; i++) {
+    const available = queue[i - 1] + arrivals;
+    completed.push(Math.min(available, capacity));
+    queue.push(available - completed[i]);
+  }
+  const narrow = window.innerWidth < 760;
+  const chartWidth = narrow ? 360 : 680;
+  const right = chartWidth - 32;
+  get('chart').setAttribute('viewBox', `0 0 ${chartWidth} 265`);
+  get('axis-step').setAttribute('x', chartWidth - 15);
+  const max = Math.max(8, Math.ceil(Math.max(...queue) / 4) * 4);
+  const x = i => 48 + i * (right - 48) / 10;
+  const y = q => 221 - q / max * 190;
+  const path = values => values.map((q, i) => (i ? 'L' : 'M') + x(i) + ',' + y(q)).join(' ');
+  get('grid').replaceChildren(); get('markers').replaceChildren();
+  for (let i = 0; i <= 4; i++) {
+    const value = max * i / 4;
+    get('grid').append(makeSvg('line', {x1:48, x2:right, y1:y(value), y2:y(value), stroke:'#dce5ee'}));
+    get('grid').append(makeSvg('text', {x:36, y:y(value)+5, 'text-anchor':'end'}, String(value)));
+  }
+  for (let i = 0; i <= 10; i++) {
+    if (!narrow || i % 2 === 0) get('grid').append(makeSvg('text', {x:x(i), y:243, 'text-anchor':'middle'}, String(i)));
+    get('markers').append(makeSvg('circle', {cx:x(i), cy:y(queue[i]), r:3, fill:i <= step ? '#235ecc' : '#899aaf'}));
+  }
+  get('projection').setAttribute('d', path(queue));
+  get('history').setAttribute('d', path(queue.slice(0, step + 1)));
+  get('current-point').setAttribute('cx', x(step)); get('current-point').setAttribute('cy', y(queue[step]));
+  get('chart-description').textContent = `La cola empieza con ${initial} tareas y termina con ${queue[10]} después de diez pasos. En el paso ${step}, hay ${queue[step]} tareas pendientes. La tabla inferior contiene todos los resultados.`;
+  get('step-label').textContent = step ? `Paso ${step} de 10` : 'Estado inicial';
+  get('previous').disabled = step === 0; get('next').disabled = step === 10;
+  get('equation').hidden = step === 0;
+  get('before').textContent = step ? queue[step - 1] : initial;
+  get('added').textContent = arrivals; get('done').textContent = completed[step]; get('after').textContent = queue[step];
+  get('reading').textContent = step ? `En el paso ${step}, llegan ${arrivals} tareas y completas ${completed[step]}. Quedan ${queue[step]} tareas pendientes.` : `Empiezas con ${initial} tareas pendientes. Avanza para ver las llegadas y el trabajo completado.`;
+  const difference = arrivals - capacity;
+  get('takeaway-title').textContent = difference > 0 ? 'La cola crece' : difference === 0 ? 'La cola se mantiene' : 'Hay capacidad para reducir la cola';
+  get('takeaway').textContent = difference > 0 ? `Llegan ${difference} tareas más de las que puedes completar en cada paso.` : difference === 0 ? 'Completas tantas tareas como llegan. Si ya hay una cola, no se reduce.' : `Puedes completar hasta ${-difference} tareas pendientes adicionales por paso. Cuando la cola llega a cero, la capacidad sobrante no se acumula.`;
+  get('data').replaceChildren();
+  queue.forEach((q, i) => {
+    const row = document.createElement('tr');
+    if (i === step) row.className = 'selected';
+    [i === 0 ? 'Inicial' : String(i), i === 0 ? '—' : completed[i], q].forEach((value, index) => {
+      const cell = document.createElement(index === 0 ? 'th' : 'td');
+      if (index === 0) cell.scope = 'row';
+      cell.textContent = value; row.append(cell);
+    });
+    get('data').append(row);
+  });
+}
+ids.forEach(id => get(id).addEventListener('input', render));
+window.addEventListener('resize', render);
+get('previous').addEventListener('click', () => { step = Math.max(0, step - 1); render(); });
+get('next').addEventListener('click', () => { step = Math.min(10, step + 1); render(); });
+get('reset').addEventListener('click', () => {
+  [5, 3, 0].forEach((value, i) => { get(ids[i]).value = value; });
+  step = 1; render();
+});
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+flowchart TD
+    A["Start with pending tasks"] --> B["Add new tasks"]
+    B --> C{"Enough capacity for all tasks?"}
+    C -->|Yes| D["Complete all tasks; queue becomes zero"]
+    C -->|No| E["Complete tasks up to capacity; keep the rest"]
+    D --> F["Continue to the next step"]
+    E --> F

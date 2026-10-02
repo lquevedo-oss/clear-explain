@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clear Explain"
+  short_description: "Explain clearly with text, diagrams, or interactive HTML"
+  default_prompt: "Use $clear-explain to explain this topic in the simplest useful format, preserving its facts and my language."
