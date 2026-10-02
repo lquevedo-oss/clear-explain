@@ -19,8 +19,6 @@ Date: 2026-10-02.
   were adjusted after the first review and the browser checks were repeated.
 - No browser console errors or remote HTTP requests occurred during these checks.
 
-## Limits
-
 ## Public publication checks
 
 - The repository at https://github.com/lquevedo-oss/clear-explain was fetched
