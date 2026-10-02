@@ -1,18 +1,22 @@
 ---
 name: clear-explain
-description: Explain complex topics or simplify dense material with STE-inspired writing, useful diagrams, and interactive HTML. Use when a user needs to understand a process, relationship, or what-if scenario. Keep simple questions brief and respect any requested format.
+description: Make explanations easier to understand with STE-inspired writing, diagrams, or interactive HTML. Use for dense-text rewrites, processes, comparisons, and what-if questions; not for ordinary implementation work without an explanation request.
 ---
 
 # Clear Explain
 
 Help the reader form a correct mental model with the least unnecessary effort.
 Choose a representation for the learning task, rather than producing every format.
+Establish the answer and check its evidence before simplifying its presentation.
+Apply this writing style to the reader-facing explanation; do not shorten the
+underlying investigation, calculations, or verification to fit a prose preference.
 
 ## Start with the learning task
 
 Infer the audience, their language, and what they need to understand or decide.
 Ask only if missing context materially changes the explanation. Keep an explicit
-format, length, or language request. Do not turn a small explanation into a project.
+format, length, or language request. Use the conversation's language unless asked
+otherwise. Do not turn a small explanation into a project.
 
 Select the smallest useful output:
 
@@ -22,10 +26,12 @@ Select the smallest useful output:
 | Follow instructions | Numbered steps |
 | Compare options on the same dimensions | Table |
 | Understand branches, dependencies, or exchanges | Diagram with a short explanation |
-| Explore how changing inputs changes results | Interactive HTML with a working model |
+| Explore how changing inputs changes results | Interactive HTML if a useful model and file tools are available |
 
 Combine formats only when each adds information. A diagram is not automatically
 better than text. An HTML page is not automatically better than a diagram.
+For a simple what-if question, a calculation or small table can be enough. Use
+HTML when repeated exploration, stepping, or visual feedback adds understanding.
 
 ## Write clearly by default
 

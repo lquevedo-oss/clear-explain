@@ -1,0 +1,16 @@
+{
+  "name": "clear-explain-checks",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Optional checks for the examples; not required to use the skill",
+  "scripts": {
+    "test": "node tests/examples.cjs"
+  },
+  "devDependencies": {
+    "mermaid": "12.1.0",
+    "playwright": "1.62.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

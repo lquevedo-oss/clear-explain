@@ -11,7 +11,7 @@ interactivo. Elige según lo que necesitas comprender: una respuesta breve para
 una pregunta simple, un diagrama para un proceso con decisiones y una página
 interactiva para explorar qué cambia al modificar una variable.
 
-La idea viene del post de Andrej Karpathy compartido por el autor del proyecto:
+La idea viene del [post de Andrej Karpathy sobre cómo comprender los resultados de los LLM](https://x.com/karpathy/status/2105819303471976479):
 crear artefactos a medida para comprender mejor los resultados de los LLM.
 Las instrucciones y los ejemplos son originales. No existe afiliación con
 Karpathy, ASD ni STEMG.
@@ -43,14 +43,26 @@ git clone https://github.com/lquevedo-oss/clear-explain.git
 cd clear-explain
 ```
 
-Copia la carpeta completa [`skills/clear-explain`](skills/clear-explain) al directorio
-de skills de tu agente. En una instalación local estándar de Codex es
-`~/.codex/skills`, o el directorio `skills` dentro de `CODEX_HOME` si lo configuraste.
+Puedes pedirle al instalador de Codex:
+
+```text
+Usa $skill-installer para instalar clear-explain desde
+https://github.com/lquevedo-oss/clear-explain, carpeta skills/clear-explain.
+```
+
+Para instalarla manualmente, copia la carpeta completa
+[`skills/clear-explain`](skills/clear-explain) al directorio de skills de tu agente.
+La ubicación de usuario que documenta Codex actualmente es `~/.agents/skills`.
+Si tu entorno usa otra ubicación configurada, utiliza esa. El entorno donde se
+creó este proyecto también reconoce `~/.codex/skills`.
+[Documentación oficial](https://learn.chatgpt.com/docs/build-skills).
 El [README en inglés](README.md#install-as-a-skill) incluye comandos para Windows,
 macOS y Linux que evitan reemplazar una skill existente.
 
-Invócala como `$clear-explain` si el agente admite skills con nombre. La detección
-y recarga dependen del entorno. En otros agentes, sigue su mecanismo de skills.
+Confirma que `clear-explain` aparezca en el selector de skills. Invócala como
+`$clear-explain` si el agente admite esa sintaxis, o selecciónala con el mecanismo
+de tu entorno. Si no aparece, reinicia el entorno y revisa sus rutas de skills.
+En otros agentes, sigue su mecanismo de instalación.
 Si no admiten skills, proporciona `SKILL.md` y la referencia pertinente como
 instrucciones o contexto, manteniendo accesibles los archivos enlazados.
 
@@ -62,15 +74,27 @@ herramientas del agente. La skill no instala paquetes ni publica contenido.
 Un mismo tema, una cola de trabajo, en tres formatos:
 
 - [Texto claro](examples/work-queue.md).
-- [Flujo Mermaid](examples/work-queue.mmd).
+- [Flujo Mermaid](examples/work-queue.mmd) y [diagrama renderizado](examples/work-queue.svg).
 - [HTML interactivo](examples/work-queue.html): ábrelo en un navegador, cambia las
   tareas que llegan y la capacidad, y avanza paso a paso.
 
 Los ejemplos usan un modelo ilustrativo con supuestos explícitos. No son una
 recomendación sobre dotación de personal. Los [casos de evaluación](evals/cases.md)
 permiten revisar decisiones de formato y fidelidad, sin prometer resultados de
-un benchmark que no se ha ejecutado. El [registro de verificación](evals/verification.md)
+un benchmark que no se ha ejecutado. La [revisión de comportamiento](evals/behavioral-review.md)
+incluye respuestas reales de una prueba pequeña con un agente independiente.
+El [registro de verificación](evals/verification.md)
 detalla las comprobaciones realizadas y sus límites.
+
+## Comprobar los ejemplos
+
+La skill y la demo offline no necesitan instalar dependencias. Para colaborar,
+puedes ejecutar las pruebas opcionales con Node.js 20+ y pnpm. Los comandos están
+en [el README en inglés](README.md#reproduce-the-example-checks).
+Revisan cálculos, controles, teclado, pantallas estrechas, funcionamiento sin
+JavaScript, solicitudes externas y renderizado Mermaid. Los resultados gráficos
+también necesitan revisión visual; estas pruebas no son una auditoría completa
+de accesibilidad.
 
 ## Relación con ASD-STE100
 
@@ -84,13 +108,11 @@ Para trabajos formales se necesita el estándar aplicable, la terminología del
 dominio y revisión adecuada. Una respuesta convincente de IA no demuestra
 cumplimiento. [Estándar y orientación sobre IA](https://asd-ste100.org/STE_downloads.html).
 
-## Colaborar y publicar
+## Colaborar
 
 Para proponer una mejora, incluye un prompt reproducible, el agente y herramientas
 utilizados y el problema observado. Usa ejemplos ficticios o sin datos privados.
 El material original se distribuye con [licencia MIT](LICENSE).
 
-Puedes crear un repositorio `clear-explain` en tu cuenta de GitHub y subir el
-contenido de esta carpeta. El [README](README.md#publish-your-copy-on-github)
-incluye los comandos. La creación del repositorio y la autenticación se realizan
-por separado.
+Para publicar tu propia versión, crea un fork en GitHub y clona tu fork.
+Conserva la atribución y la licencia al redistribuir el material del proyecto.

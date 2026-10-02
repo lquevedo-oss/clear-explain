@@ -33,7 +33,7 @@ Spanish example (inspired style, not formal STE):
 **Dense:** "Se deberá proceder al reinicio del equipo únicamente tras haberse
 confirmado la finalización del respaldo."
 
-**Clear:** "Confirma que el respaldo terminó. Después, reinicia el equipo."
+**Clear:** "Reinicia el equipo solo después de confirmar que el respaldo terminó."
 
 Preserve "must" if the output is a policy or a contractual requirement. A direct
 instruction is suitable here because the example is a procedure.

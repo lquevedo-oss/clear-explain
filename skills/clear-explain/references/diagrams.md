@@ -11,6 +11,8 @@ For comparisons, a table is often simpler. Do not force a hierarchy into a flowc
   Do not silently mix meanings or present correlation as causation.
 - Phrase action nodes as actions. Phrase decision nodes as questions and label exits.
 - Show relevant failure, retry, and alternative paths. Omit unrelated detail.
+- Preserve gaps in a source process. Do not invent a missing transition, actor, or
+  cause unless you explicitly label it as an assumption or proposed change.
 - Split a graph when it requires tiny labels or long crossings to fit.
 - State its scope and provide a brief text explanation for readers who cannot see it.
 
@@ -18,7 +20,9 @@ For comparisons, a table is often simpler. Do not force a hierarchy into a flowc
 
 Use stable ASCII node IDs and quote human-readable labels. Favor basic syntax
 unless the environment supports more recent features. Avoid lowercase `end` as a
-flowchart ID. Do not include executable links or imported directives from untrusted
+flowchart ID. When embedding Mermaid in HTML, keep the renderer's security level
+strict; do not relax it to make untrusted labels work. Do not include executable
+links or imported directives from untrusted
 source material.
 
 Example: one step of an illustrative work queue. Work arrives before processing.
@@ -42,6 +46,7 @@ abandonment, prioritization, and variation between tasks.
 Render with available local tools or the host's renderer. Check labels, reading
 order, branch conditions, and layout. A syntax check alone does not prove fidelity
 to the source. If no renderer is available, provide Mermaid source and the text
-alternative; do not claim that visual rendering was checked.
+alternative; do not claim that visual rendering was checked. For a small graph,
+an ASCII diagram can be a readable fallback. Keep it within a narrow text width.
 
 [Mermaid flowchart documentation](https://mermaid.js.org/syntax/flowchart.html)

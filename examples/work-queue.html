@@ -14,6 +14,11 @@ h1{font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-1.5px;margin:
 @media(max-width:380px){.fields{grid-template-columns:1fr}.field:last-child{grid-column:auto}.term b{font-size:24px}.operator{font-size:18px}main{padding-inline:15px}}
 @media print{body{background:white}main{padding:0}.controls,.nav-buttons,.reset{display:none}.workspace{grid-template-columns:1fr}.below{grid-template-columns:1fr}details>*{display:block}footer{break-inside:avoid}}
 </style>
+<style>
+.chart-key{display:flex;flex-wrap:wrap;gap:8px 20px;margin:8px 0 0;font-size:14px;color:var(--muted)}
+.chart-key span{display:inline-flex;align-items:center;gap:8px}.chart-key i{display:inline-block;width:24px;border-top:3px solid var(--blue)}
+.chart-key .future{border-top:2px dashed #899aaf}
+</style>
 </head>
 <body>
 <main>
@@ -25,11 +30,11 @@ h1{font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-1.5px;margin:
 <div class="controls">
 <h2>Prueba un escenario</h2>
 <div class="fields">
-<div class="field"><label for="arrivals">Tareas que llegan <output id="arrivals-value" for="arrivals">5</output></label><span class="hint">En cada paso</span><input id="arrivals" type="range" min="0" max="12" value="5" aria-describedby="model-note"></div>
-<div class="field"><label for="capacity">Capacidad <output id="capacity-value" for="capacity">3</output></label><span class="hint">Tareas que puedes completar por paso</span><input id="capacity" type="range" min="0" max="12" value="3" aria-describedby="model-note"></div>
-<div class="field"><label for="initial">Cola inicial <output id="initial-value" for="initial">0</output></label><span class="hint">Tareas pendientes antes de empezar</span><input id="initial" type="range" min="0" max="20" value="0" aria-describedby="model-note"></div>
+<div class="field"><label for="arrivals">Tareas que llegan <output id="arrivals-value" for="arrivals">5</output></label><span class="hint">En cada paso</span><input id="arrivals" type="range" min="0" max="12" value="5" aria-describedby="model-note" disabled></div>
+<div class="field"><label for="capacity">Capacidad <output id="capacity-value" for="capacity">3</output></label><span class="hint">Tareas que puedes completar por paso</span><input id="capacity" type="range" min="0" max="12" value="3" aria-describedby="model-note" disabled></div>
+<div class="field"><label for="initial">Cola inicial <output id="initial-value" for="initial">0</output></label><span class="hint">Tareas pendientes antes de empezar</span><input id="initial" type="range" min="0" max="20" value="0" aria-describedby="model-note" disabled></div>
 </div>
-<button class="reset" id="reset" type="button">Restablecer ejemplo</button>
+<button class="reset" id="reset" type="button" disabled>Restablecer ejemplo</button>
 <p class="hint" style="margin-top:14px">Al cambiar un valor, se recalculan los diez pasos del escenario.</p>
 </div>
 <div class="explore">
@@ -40,7 +45,8 @@ h1{font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-1.5px;margin:
 <circle id="current-point" r="7" fill="#235ecc" stroke="white" stroke-width="3"></circle>
 <text id="axis-step" x="665" y="255" text-anchor="end">Paso</text>
 </svg>
-<div class="step-nav"><strong id="step-label">Paso 1 de 10</strong><div class="nav-buttons"><button id="previous" type="button">Paso anterior</button><button id="next" class="primary" type="button">Siguiente paso</button></div></div>
+<p class="chart-key"><span><i aria-hidden="true"></i>Pasos recorridos</span><span><i class="future" aria-hidden="true"></i>Pasos siguientes del modelo</span></p>
+<div class="step-nav"><strong id="step-label">Paso 1 de 10</strong><div class="nav-buttons"><button id="previous" type="button" disabled>Paso anterior</button><button id="next" class="primary" type="button" disabled>Siguiente paso</button></div></div>
 <div id="result-region" aria-live="polite" aria-atomic="true">
 <div class="equation" id="equation" aria-label="Cálculo del paso seleccionado">
 <div class="term"><b id="before">0</b><span>Pendientes antes</span></div><span class="operator" aria-hidden="true">+</span>
@@ -137,6 +143,7 @@ get('reset').addEventListener('click', () => {
   step = 1; render();
 });
 render();
+document.querySelectorAll('.workspace input, #reset').forEach(control => { control.disabled = false; });
 </script>
 </body>
 </html>

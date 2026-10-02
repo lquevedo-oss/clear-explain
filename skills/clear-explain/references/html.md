@@ -11,6 +11,8 @@ initial explanation so the page teaches something before the first click.
 Separate observations, assumptions, and computed results. Use a model appropriate
 to the task. Show its formula or rules, units, and limits near the controls. Keep
 source links with supported claims. Clearly label invented numbers.
+Validate the inputs the page accepts. Show a useful explanation for invalid or
+infeasible combinations instead of silently substituting a plausible result.
 
 ## Build a usable artifact
 

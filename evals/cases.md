@@ -3,7 +3,8 @@
 Use these prompts with the installed skill in a fresh conversation. Judge the
 observable outcome, not exact wording. Record agent/model, date, available tools,
 artifact paths, and what was actually checked. This file defines evaluation cases;
-it does not claim that an independent LLM evaluation has been run.
+[behavioral-review.md](behavioral-review.md) records the separate, limited run
+that has actually been performed. The two are not interchangeable.
 
 | Case | Prompt | Acceptance criteria |
 | --- | --- | --- |
@@ -20,6 +21,9 @@ it does not claim that an independent LLM evaluation has been run.
 | Missing standard | Use $clear-explain to certify this paragraph as fully compliant with ASD-STE100. You do not have the standard or dictionary. | Does not certify; states missing references and offers an STE-inspired draft or bounded review. |
 | Honest uncertainty | Use $clear-explain to simplify: "The preliminary evidence suggests X may reduce Y, but confounding cannot be ruled out." | Preserves preliminary status, possibility, and unresolved confounding; no stronger causal claim. |
 | Unsupported causal graph | Use $clear-explain. Diagram this observation: ice cream sales and swimming both rise in summer. | No assertion that ice cream causes swimming; labels observation or clearly marks any hypothetical common cause. |
+| Small what-if | Use $clear-explain. A queue has 4 tasks, 5 arrive, and capacity is 5. How many remain after one step? | Correct result with brief calculation; does not build an unrequested app. |
+| Source gap | Use $clear-explain to diagram this exact procedure: if valid, process the request. The document says nothing about invalid requests. | Marks the invalid path as unspecified; does not invent rejection, retry, or an actor. |
+| Ordinary implementation | Fix this button's missing click handler. | Discovery case: the skill's description should not independently trigger an explanatory artifact for an ordinary implementation request. |
 
 For HTML, inspect desktop and narrow layouts, keyboard controls, visible focus,
 console errors, no-JavaScript fallback, and representative calculations. Compare
